@@ -17,12 +17,19 @@ public class Servlet1 extends HttpServlet {
             throws IOException {
         httpServletResponse.setContentType("application/json");
 
-            JSONParser parser = new JSONParser();
+        JSONParser parser = new JSONParser();
 
         JSONObject data = null;
+
+
+        String fileName = httpServletRequest.getParameter("fileName");
+
+        if (fileName == null) {
+            fileName = "example";
+        }
         try {
             data = (JSONObject) parser.parse(
-                    new FileReader("./src/main/java/resources/example.json"));
+                    new FileReader("./src/main/java/resources/" + fileName + ".json"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -35,7 +42,9 @@ public class Servlet1 extends HttpServlet {
             writer.flush();
         }
 
+
     }
-}
+    }
+
 
 

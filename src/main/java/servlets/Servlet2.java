@@ -26,8 +26,15 @@ public class Servlet2 extends HttpServlet
         writer.print("<h1>Files:</h1>");
         names.stream().forEach(writer::println);
 
-    String fileName = httpServletRequest.getParameter("fileName");
 
+        writer.print("<h1>read file:</h1>");
+        writer.print("<form action=\"/first\" method=\"get\">\n" +
+                "  File name ('.json' add auto):<br>\n" +
+                "  <input type=\"text\" name=\"fileName\" value=\"\">\n" +
+                "  <br>\n" +
+                "  <br><br>\n" +
+                "  <input type=\"submit\" value=\"Submit\">\n" +
+                "</form> ");
         writer.print("<h1>Create new file:</h1>");
         writer.print("<form action=\"/second\" method=\"post\">\n" +
                 "  File name ('.json' add auto):<br>\n" +
@@ -55,6 +62,22 @@ public class Servlet2 extends HttpServlet
             fileWriter.close();
         }
     }
+    public void doDelete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
+            throws IOException {
+        String fileName = httpServletRequest.getParameter("fName");
+        File f = new File("./src/main/java/resources/" + fileName + ".json");
+        if(f.isFile() && !f.isDirectory()) {
+            f.delete();
+        }
+    }
+    public void doPut(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
+            throws IOException {
+        String fileName = httpServletRequest.getParameter("fName");
+        String name = httpServletRequest.getParameter("Name");
+        String age = httpServletRequest.getParameter("Age");
+
+    }
+
 
     }
 
