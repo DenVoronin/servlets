@@ -19,5 +19,7 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println("OK: server started");
+        System.out.println("use 8080 port");
+        System.out.println("/first and /second");
     }
 }
