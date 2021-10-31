@@ -12,8 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class Servlet2 extends HttpServlet
-{
+public class Servlet2 extends HttpServlet {
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
             throws IOException {
         httpServletResponse.setContentType("text/html");
@@ -66,6 +65,7 @@ public class Servlet2 extends HttpServlet
                 "  <input type=\"submit\" value=\"Edit\">\n" +
                 "</form> ");
     }
+
     public void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
             throws IOException {
         PrintWriter writer = httpServletResponse.getWriter();
@@ -99,7 +99,7 @@ public class Servlet2 extends HttpServlet
             String age = httpServletRequest.getParameter("reAge");
             File f = new File("./src/main/java/resources/" + fileName + ".json");
             if (f.isFile() && !f.isDirectory()) {
-              
+
 
                 Object obj = null;
                 try {
@@ -108,8 +108,8 @@ public class Servlet2 extends HttpServlet
                     e.printStackTrace();
                 }
                 JSONObject jo = (JSONObject) obj;
-                    String jName = (String) jo.get("name");
-                    String jAge = (String) jo.get("age");
+                String jName = (String) jo.get("name");
+                String jAge = (String) jo.get("age");
                 String jString = null;
 
                 if (!name.equals(jName)) {
@@ -134,14 +134,16 @@ public class Servlet2 extends HttpServlet
             }
         }
     }
+
     public void doDelete(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
             throws IOException {
         String fileName = httpServletRequest.getParameter("fName");
         File f = new File("./src/main/java/resources/" + fileName + ".json");
-        if(f.isFile() && !f.isDirectory()) {
+        if (f.isFile() && !f.isDirectory()) {
             f.delete();
         }
     }
+
     public void doPut(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
             throws IOException {
         String fileName = httpServletRequest.getParameter("fileReName");
@@ -183,7 +185,6 @@ public class Servlet2 extends HttpServlet
 
         }
     }
-
 
 
 }
